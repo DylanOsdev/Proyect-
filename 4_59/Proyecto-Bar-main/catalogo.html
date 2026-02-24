@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo - La Licorera 24/7</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/estilos.css">
+    <link rel="stylesheet" href="CSS/catalogo.css">
+</head>
+<body>  <!-- Top Bar Tipo Menú -->
+    <!-- Top Bar -->
+<div class="top-menu-bar">
+    <div class="container top-bar-flex">
+        <span class="top-bar-text">🍸 Productos verificados Comercialización responsable y legal. 🍸</span>
+    </div>
+</div>
+
+
+<!-- Header Principal -->
+<header class="main-header-simple">
+    <div class="container">
+        <div class="row align-items-center py-3">
+
+            <!-- Logo -->
+            <div class="col-md-2">
+                <a href="index.html">
+                    <img src="img/logo.ico.png" alt="Licorera Aranjuez 24/7" class="img-fluid main-logo">
+                </a>
+            </div>
+
+            <!-- Buscador Central -->
+            <div class="col-md-7">
+                <div class="search-wrapper">
+                    <input type="search" class="form-control search-input-main" placeholder="Buscar..." aria-label="Buscar productos">
+                </div>
+            </div>
+
+            <!-- Iconos -->
+            <div class="col-md-3 text-end">
+                <div class="header-actions">
+
+                    <button class="icon-btn" aria-label="Favoritos">
+                        <i class="far fa-heart"></i>
+                    </button>
+
+                    <button class="icon-btn icon-cart" data-bs-toggle="offcanvas" data-bs-target="#carritoOffcanvas" aria-label="Carrito">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span id="cart-count-badge" class="cart-badge">0</span>
+                    </button>
+
+                    <a href="login-register-cliente.html" class="icon-btn text-decoration-none" aria-label="Ir a mi Perfil">
+        <i class="far fa-user-circle"></i>
+    </a>
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</header>
+
+   <section class="warehouse-hero-pro">
+        <div class="overlay-dark"></div>
+        <div class="container position-relative z-2 text-center">
+            <h1 class="warehouse-title-pro animate-scale-in">
+                Nuestro <span class="text-gradient">Almacén</span>
+            </h1>
+            <p class="lead text-white-50 mt-3 animate-fade-up" style="max-width: 600px; margin: 0 auto;">
+                Más de 500 referencias de licores nacionales e importados esperando por ti. Calidad garantizada y estampillada.
+            </p>
+        </div>
+    </section>
+
+    <section class="shipping-info-pro">
+        <div class="container">
+            <div class="row g-4 justify-content-center">
+                
+                <div class="col-md-3 col-6">
+                    <div class="benefit-card">
+                        <div class="icon-wrapper">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h5>Compra Segura</h5>
+                        <p>Pagos encriptados y contraentrega.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-6">
+                    <div class="benefit-card active"> <div class="icon-wrapper">
+                            <i class="fas fa-shipping-fast"></i>
+                        </div>
+                        <h5>Despacho Flash</h5>
+                        <p>En tu puerta en menos de 45 min.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-6">
+                    <div class="benefit-card">
+                        <div class="icon-wrapper">
+                            <i class="fas fa-store-alt"></i>
+                        </div>
+                        <h5>Retira en Tienda</h5>
+                        <p>Compra online, recoge en Aranjuez.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-6">
+                    <div class="benefit-card">
+                        <div class="icon-wrapper">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h5>Cobertura Sur</h5>
+                        <p>Nuevos locales en Envigado y Sabaneta.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Filtros y Vista Toggle -->
+    <section class="filters-toolbar">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="results-count">
+                    Mostrando <strong id="product-count">24</strong> resultados
+                </div>
+                <div class="view-controls">
+                    <span class="me-2">Ordenar:</span>
+                    <select class="form-select form-select-sm d-inline-block w-auto">
+                        <option>Relevancia</option>
+                        <option>Precio: Menor a Mayor</option>
+                        <option>Precio: Mayor a Menor</option>
+                        <option>Más vendidos</option>
+                    </select>
+                    <div class="ms-3 d-inline-flex align-items-center">
+                        <span class="me-2">Vista:</span>
+                        <div class="btn-group btn-group-sm">
+                            <button class="btn btn-outline-secondary active" id="grid-view">
+                                <i class="fas fa-th"></i>
+                            </button>
+                            <button class="btn btn-outline-secondary" id="list-view">
+                                <i class="fas fa-list"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Catálogo Principal -->
+    <section class="catalog-main">
+        <div class="container">
+            <div class="row">
+                <!-- Sidebar de Filtros -->
+                <aside class="col-lg-3 col-md-4">
+                    <div class="filters-sidebar">
+                        
+                        <!-- Filtro de Precio -->
+                        <div class="filter-group">
+                            <h3 class="filter-title">
+                                Precio
+                                <button class="btn-collapse" data-bs-toggle="collapse" data-bs-target="#precioCollapse">
+                                    <i class="fas fa-chevron-up"></i>
+                                </button>
+                            </h3>
+                            <div class="collapse show" id="precioCollapse">
+                                <div class="filter-content">
+                                    <div class="price-inputs">
+                                        <input type="number" class="form-control form-control-sm" placeholder="$ Mín" id="price-min">
+                                        <span class="mx-2">-</span>
+                                        <input type="number" class="form-control form-control-sm" placeholder="$ Máx" id="price-max">
+                                    </div>
+                                    <div class="price-range-slider mt-3">
+                                        <input type="range" class="form-range" min="0" max="500000" step="5000" id="priceRangeMin">
+                                        <input type="range" class="form-range" min="0" max="500000" step="5000" id="priceRangeMax">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Filtro de Marca -->
+                        <div class="filter-group">
+                            <h3 class="filter-title">
+                                Marca
+                                <button class="btn-collapse" data-bs-toggle="collapse" data-bs-target="#marcaCollapse">
+                                    <i class="fas fa-chevron-up"></i>
+                                </button>
+                            </h3>
+                            <div class="collapse show" id="marcaCollapse">
+                                <div class="filter-content">
+                                    <div class="filter-search mb-2">
+                                        <input type="text" class="form-control form-control-sm" placeholder="Buscar marca...">
+                                    </div>
+                                    <div class="filter-options">
+                                        <label class="filter-checkbox">
+                                            <input type="checkbox" name="marca" value="old-parr">
+                                            <span>Old Parr <small>(12)</small></span>
+                                        </label>
+                                        <label class="filter-checkbox">
+                                            <input type="checkbox" name="marca" value="johnnie-walker">
+                                            <span>Johnnie Walker <small>(8)</small></span>
+                                        </label>
+                                        <label class="filter-checkbox">
+                                            <input type="checkbox" name="marca" value="absolut">
+                                            <span>Absolut <small>(6)</small></span>
+                                        </label>
+                                        <label class="filter-checkbox">
+                                            <input type="checkbox" name="marca" value="smirnoff">
+                                            <span>Smirnoff <small>(15)</small></span>
+                                        </label>
+                                        <label class="filter-checkbox">
+                                            <input type="checkbox" name="marca" value="bacardi">
+                                            <span>Bacardí <small>(10)</small></span>
+                                        </label>
+                                        <label class="filter-checkbox">
+                                            <input type="checkbox" name="marca" value="aguardiente">
+                                            <span>Aguardiente Antioqueño <small>(20)</small></span>
+                                        </label>
+                                        <label class="filter-checkbox">
+                                            <input type="checkbox" name="marca" value="corona">
+                                            <span>Corona <small>(18)</small></span>
+                                        </label>
+                                        <label class="filter-checkbox">
+                                            <input type="checkbox" name="marca" value="heineken">
+                                            <span>Heineken <small>(14)</small></span>
+                                        </label>
+                                        <label class="filter-checkbox">
+                                            <input type="checkbox" name="marca" value="vuse">
+                                            <span>Vuse <small>(25)</small></span>
+                                        </label>
+                                        <button class="btn btn-link btn-sm p-0 mt-2">Ver más marcas</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Filtro de Tipo de Licor -->
+                        <div class="filter-group">
+                            <h3 class="filter-title">
+                                Tipo de Licor
+                                <button class="btn-collapse" data-bs-toggle="collapse" data-bs-target="#tipoCollapse">
+                                    <i class="fas fa-chevron-up"></i>
+                                </button>
+                            </h3>
+                            <div class="collapse show" id="tipoCollapse">
+                                <div class="filter-content">
+                                    <div class="filter-options">
+                                        <label class="filter-checkbox">
+                                            <input type="checkbox" name="tipo" value="whisky">
+                                            <span>Whisky <small>(45)</small></span>
+                                        </label>
+                                        <label class="filter-checkbox">
+                                            <input type="checkbox" name="tipo" value="vodka">
+                                            <span>Vodka <small>(32)</small></span>
+                                        </label>
+                                        <label class="filter-checkbox">
+                                            <input type="checkbox" name="tipo" value="ron">
+                                            <span>Ron <small>(38)</small></span>
+                                        </label>
+                                        <label class="filter-checkbox">
+                                            <input type="checkbox" name="tipo" value="tequila">
+                                            <span>Tequila <small>(22)</small></span>
+                                        </label>
+                                        <label class="filter-checkbox">
+                                            <input type="checkbox" name="tipo" value="aguardiente">
+                                            <span>Aguardiente <small>(28)</small></span>
+                                        </label>
+                                        <label class="filter-checkbox">
+                                            <input type="checkbox" name="tipo" value="cerveza">
+                                            <span>Cerveza <small>(56)</small></span>
+                                        </label>
+                                        <label class="filter-checkbox">
+                                            <input type="checkbox" name="tipo" value="vino">
+                                            <span>Vino <small>(18)</small></span>
+                                        </label>
+                                        <label class="filter-checkbox">
+                                            <input type="checkbox" name="tipo" value="brandy">
+                                            <span>Brandy <small>(12)</small></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Filtro de País de Origen -->
+                        <div class="filter-group">
+                            <h3 class="filter-title">
+                                País de Origen
+                                <button class="btn-collapse" data-bs-toggle="collapse" data-bs-target="#paisCollapse">
+                                    <i class="fas fa-chevron-up"></i>
+                                </button>
+                            </h3>
+                            <div class="collapse show" id="paisCollapse">
+                                <div class="filter-content">
+                                    <div class="filter-options">
+                                        <label class="filter-checkbox">
+                                            <input type="checkbox" name="pais" value="colombia">
+                                            <span>Colombia <small>(35)</small></span>
+                                        </label>
+                                        <label class="filter-checkbox">
+                                            <input type="checkbox" name="pais" value="escocia">
+                                            <span>Escocia <small>(28)</small></span>
+                                        </label>
+                                        <label class="filter-checkbox">
+                                            <input type="checkbox" name="pais" value="mexico">
+                                            <span>México <small>(22)</small></span>
+                                        </label>
+                                        <label class="filter-checkbox">
+                                            <input type="checkbox" name="pais" value="cuba">
+                                            <span>Cuba <small>(18)</small></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Filtro de Graduación -->
+                        <div class="filter-group">
+                            <h3 class="filter-title">
+                                Graduación
+                                <button class="btn-collapse" data-bs-toggle="collapse" data-bs-target="#gradCollapse">
+                                    <i class="fas fa-chevron-up"></i>
+                                </button>
+                            </h3>
+                            <div class="collapse show" id="gradCollapse">
+                                <div class="filter-content">
+                                    <div class="filter-options">
+                                        <label class="filter-checkbox">
+                                            <input type="checkbox" name="graduacion" value="baja">
+                                            <span>Baja (< 20°) <small>(45)</small></span>
+                                        </label>
+                                        <label class="filter-checkbox">
+                                            <input type="checkbox" name="graduacion" value="media">
+                                            <span>Media (20° - 35°) <small>(68)</small></span>
+                                        </label>
+                                        <label class="filter-checkbox">
+                                            <input type="checkbox" name="graduacion" value="alta">
+                                            <span>Alta (> 35°) <small>(42)</small></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Botón Limpiar Filtros -->
+                        <button class="btn btn-outline-danger w-100 mt-3" id="clearFilters">
+                            <i class="fas fa-times me-2"></i>Limpiar Filtros
+                        </button>
+
+                    </div>
+                </aside>
+
+                <!-- Grid de Productos -->
+                <main class="col-lg-9 col-md-8">
+                    <div class="products-grid" id="products-container">
+                        <!-- Los productos se cargan dinámicamente -->
+                    </div>
+
+                    <!-- Paginación -->
+                    <nav class="pagination-container mt-5">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#"><i class="fas fa-chevron-left"></i></a>
+                            </li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">4</a></li>
+                            <li class="page-item"><a class="page-link" href="#">5</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
+                            </li>
+                        </ul>
+                    </nav>
+                </main>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer-neutral">
+    <div class="container py-5">
+        <div class="row g-4">
+
+            <!-- SOBRE LA MARCA -->
+            <div class="col-md-3">
+                <h5 class="footer-title">Licores Aranjuez <br> 24 Horas</h5>
+                <p class="footer-text">
+                    © 2025 LA LICORERA ARANJUEZ 24/7<br>Todos los derechos reservados.
+                </p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <!-- DESPACHOS / CONTACTO -->
+            <div class="col-md-3">
+                <h6 class="footer-subtitle">Válida la legalidad de tu botella</h6>
+                <a href="https://syctrace.org/" class="footer-link">Válida tu botella</a>
+                <div class="top-bar-btn">
+                    <br><h6 class="footer-subtitle">Contacto</h6>
+                    <p class="footer-text"><i class="fas fa-phone me-2"></i>+57(324)763-9861</p>
+                </div>
+            </div>
+
+            <!-- ACCESO -->
+            <div class="col-md-3">
+                <h6 class="footer-subtitle">Acceso al negocio</h6>
+                <p><a href="login-empleado-admin.html" class="footer-link">Iniciar sesión</a></p>
+            </div>
+
+            <!-- HORARIO / LEGALES / DERECHO RESERVADOS -->
+            <div class="col-md-3">
+                <h6 class="footer-subtitle">Horario de atención</h6>
+                <p class="footer-text">24 horas Todos los días</p>
+                <h6 class="footer-subtitle">Trabaja con nosotros</h6>
+                <p><a href="empleo.html" class="footer-link">Formulario</a></p>
+                <p><a href="encuesta.html" class="footer-link">Ayudanos</a></p>
+                <p><a href="vip-club.html" class="footer-link">Vip</a></p>
+            </div>
+
+            <!-- AVISO LEGAL -->
+            <div class="text-center mt-3">
+                <p class="footer-warning">EL EXCESO DE ALCOHOL ES PERJUDICIAL PARA LA SALUD.  
+                PROHÍBASE EL EXPENDIO DE BEBIDAS EMBRIAGANTES A MENORES DE EDAD.</p>
+            </div>
+        </div>
+    </div>
+
+    <!--Botón PQR flotante--> 
+    <a class="pqr-float float-btn" href="contacto.html" aria-label="Ir a PQR"><i class="fas fa-file-alt"></i></a>
+    <!--Botón whatsapp flotante--> 
+    <a class="whatsapp-float float-btn" href="https://wa.me/message/LFTBW5TCQDGTJ1" target="_blank" aria-label="Contactar por WhatsApp"><i class="fab fa-whatsapp"></i></a>
+
+
+    <!-- Cart Offcanvas -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="carritoOffcanvas">
+        <div class="offcanvas-header bg-light">
+            <h5 class="offcanvas-title fw-bold"><i class="fas fa-shopping-bag me-2 text-success"></i>Tu Carrito</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column p-0">
+            <div id="lista-carrito" class="flex-grow-1 p-3"></div>
+            <div class="border-top p-3 bg-light">
+                <div class="d-flex justify-content-between mb-3">
+                    <span class="fw-bold">Total:</span>
+                    <span class="fw-bold fs-5 text-success" id="carrito-total">$0</span>
+                </div>
+                <div id="checkout-btn-container"></div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script src="Javascript/data.js"></script> 
+    <script src="Javascript/main.js"></script>
+    <script src="Javascript/catalogo.js"></script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+:root {
+    --primary: #9D4EDD;
+    --secondary: #C77DFF;
+    --dark-bg: #10002B;
+    --success: #00ff88;
+}
+
+/* Estilos Generales */
+.brand-font { font-family: 'Kaushan Script', cursive; }
+.badge { background-color: var(--primary) !important; }
+.form-control:focus { border-color: var(--primary); box-shadow: 0 0 0 4px rgba(157, 78, 221, 0.1); }
+
+/* Tarjetas de Entrega */
+.delivery-card {
+    display: block; cursor: pointer; border: 2px solid #f0f0f0; border-radius: 12px; padding: 15px;
+    transition: all 0.3s; position: relative; overflow: hidden;
+}
+.delivery-card input { position: absolute; opacity: 0; }
+.delivery-card:hover { border-color: var(--secondary); background: #fafafa; }
+
+/* Estado Activo (Radio Checked) */
+.delivery-card:has(input:checked) {
+    border-color: var(--primary); background-color: #F8F0FC; box-shadow: 0 4px 15px rgba(157, 78, 221, 0.15);
+}
+.delivery-card:has(input:checked)::before {
+    content: ''; position: absolute; left: 0; top: 0; height: 100%; width: 5px; background: var(--primary);
+}
+
+/* Iconos */
+.icon-box {
+    width: 50px; height: 50px; display: flex; align-items: center; justify-content: center;
+    border-radius: 10px; background: rgba(46, 204, 113, 0.1); color: #27ae60; font-size: 1.2rem;
+}
+.icon-box.pickup { background: rgba(255, 193, 7, 0.1); color: #ffc107; }
+
+/* Métodos de Pago */
+.payment-option { border: 2px solid #f0f0f0; border-radius: 12px; transition: 0.3s; }
+.payment-option:hover { border-color: var(--secondary); }
+.payment-option:has(input:checked) { border-color: var(--primary); background: #F8F0FC; }
+
+/* MODAL DE ÉXITO (Estilo Dark/Neon) */
+.modal-glass-success {
+    background: rgba(11, 11, 11, 0.95);
+    border: 1px solid var(--success);
+    box-shadow: 0 0 40px rgba(0, 255, 136, 0.2);
+    border-radius: 20px;
+    color: white;
+}
+.text-neon-green { color: var(--success); text-shadow: 0 0 10px rgba(0, 255, 136, 0.4); }
+
+.btn-success-glow {
+    background: var(--success); color: #000; border: none;
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.4); transition: 0.3s;
+}
+.btn-success-glow:hover { background: #00cc6a; transform: scale(1.02); }
+
+.glow-effect {
+    position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+    background: radial-gradient(circle, rgba(0,255,136,0.1) 0%, transparent 60%);
+    animation: rotate 10s linear infinite; pointer-events: none;
+}
+@keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+/* Animación SVG Check */
+.checkmark { width: 80px; height: 80px; display: block; stroke-width: 2; stroke: var(--success); stroke-miterlimit: 10; margin: 0 auto; box-shadow: inset 0px 0px 0px var(--success); animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both; border-radius: 50%; }
+.checkmark__circle { stroke-dasharray: 166; stroke-dashoffset: 166; stroke-width: 2; stroke-miterlimit: 10; stroke: var(--success); fill: none; animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards; }
+.checkmark__check { transform-origin: 50% 50%; stroke-dasharray: 48; stroke-dashoffset: 48; animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards; }
+
+@keyframes stroke { 100% { stroke-dashoffset: 0; } }
+@keyframes scale { 0%, 100% { transform: none; } 50% { transform: scale3d(1.1, 1.1, 1); } }
+@keyframes fill { 100% { box-shadow: inset 0px 0px 0px 50px rgba(0, 255, 136, 0.1); } }
+
+.hover-scale:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.2) !important; }

@@ -1,0 +1,70 @@
+/* RESET & BASE */
+body { font-family: 'Montserrat', sans-serif; height: 100vh; background-color: #fff; }
+.login-container { height: 100vh; overflow: hidden; }
+
+/* COLUMNA IMAGEN (Dinámica) */
+.login-image {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    transition: background-image 0.5s ease-in-out;
+}
+
+/* Overlays de Color */
+.login-image::before {
+    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    transition: background 0.5s ease; z-index: 1;
+}
+.login-image.admin::before { background: linear-gradient(135deg, rgba(142, 68, 173, 0.9), rgba(41, 128, 185, 0.8)); } /* Purple */
+.login-image.employee::before { background: linear-gradient(135deg, rgba(39, 174, 96, 0.9), rgba(22, 160, 133, 0.8)); } /* Green */
+
+.overlay-content {
+    position: relative; z-index: 2; height: 100%;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    color: white; text-align: center; padding: 0 10%;
+}
+
+/* COLUMNA FORMULARIO */
+.login-form-section {
+    display: flex; align-items: center; justify-content: center;
+    background: white; padding: 40px;
+    height: 100vh;
+    overflow-y: auto; /* Scroll si la pantalla es muy pequeña */
+}
+.login-wrapper { width: 100%; max-width: 400px; }
+
+.brand-title { font-family: 'Kaushan Script', cursive; color: #2c3e50; font-size: 2.2rem; }
+
+/* SWITCH DE ROLES */
+.role-switch {
+    background: #f1f3f5; border-radius: 50px; padding: 5px;
+    display: flex; justify-content: space-between; position: relative;
+    cursor: pointer;
+}
+.role-option {
+    width: 50%; text-align: center; padding: 10px; border-radius: 50px;
+    font-weight: 600; color: #7f8c8d; transition: all 0.3s;
+}
+.role-option:hover { background-color: rgba(0,0,0,0.05); }
+.role-option.active { color: white; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+
+/* Colores dinámicos del switch */
+.role-switch:has(#btn-admin.active) .role-option.active { background: #8e44ad; }
+.role-switch:has(#btn-employee.active) .role-option.active { background: #27ae60; }
+
+/* FORMULARIO */
+.form-control {
+    border-radius: 10px; border: 1px solid #dfe6e9; padding: 12px; height: 55px;
+}
+.form-control:focus { box-shadow: none; border-color: #8e44ad; }
+
+.btn-login {
+    border-radius: 10px; font-weight: 700; color: white; transition: 0.3s; border: none;
+}
+.btn-login:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+
+/* RESPONSIVE */
+@media (max-width: 991px) {
+    .login-container { height: auto; min-height: 100vh; }
+    .login-form-section { padding: 60px 20px; min-height: 100vh; }
+}

@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finalizar Compra - Licorera Aranjuez 24/7</title>
+    
+    <!-- Librerías -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- TUS ESTILOS -->
+    <link rel="stylesheet" href="CSS/estilos.css"> 
+    <link rel="stylesheet" href="CSS/checkout.css"> 
+</head>
+<body>  <!-- Top Bar Tipo Menú -->
+    <!-- Top Bar -->
+<div class="top-menu-bar">
+    <div class="container top-bar-flex">
+        <span class="top-bar-text">🍸 Productos verificados Comercialización responsable y legal. 🍸</span>
+    </div>
+</div>
+
+
+<!-- Header Principal -->
+<header class="main-header-simple">
+    <div class="container">
+        <div class="row align-items-center py-3">
+
+            <!-- Logo -->
+            <div class="col-md-2">
+                <a href="index.html">
+                    <img src="img/logo.ico.png" alt="Licorera Aranjuez 24/7" class="img-fluid main-logo">
+                </a>
+            </div>
+
+            <!-- Buscador Central -->
+            <div class="col-md-7">
+                <div class="search-wrapper">
+                    <input type="search" class="form-control search-input-main" placeholder="Buscar..." aria-label="Buscar productos">
+                </div>
+            </div>
+
+            <!-- Iconos -->
+            <div class="col-md-3 text-end">
+                <div class="header-actions">
+
+                    <button class="icon-btn" aria-label="Favoritos">
+                        <i class="far fa-heart"></i>
+                    </button>
+
+                    <button class="icon-btn icon-cart" data-bs-toggle="offcanvas" data-bs-target="#carritoOffcanvas" aria-label="Carrito">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span id="cart-count-badge" class="cart-badge">0</span>
+                    </button>
+
+                    <a href="login-register-cliente.html" class="icon-btn text-decoration-none" aria-label="Ir a mi Perfil">
+        <i class="far fa-user-circle"></i>
+    </a>
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</header>
+
+    <div class="container py-5">
+        <div class="row">
+            
+            <!-- COLUMNA IZQUIERDA: FORMULARIO -->
+            <div class="col-lg-7 mb-4">
+                
+                <!-- SECCIÓN 1: ENVÍO -->
+                <section class="checkout-section p-4 mb-4">
+                    <h5 class="fw-bold mb-4"><span class="badge rounded-circle me-2">1</span> Método de Entrega</h5>
+                    
+                    <div class="delivery-options">
+                        <!-- Opción 1: Express -->
+                        <label class="delivery-card active">
+                            <input type="radio" name="delivery" value="express" checked onchange="actualizarEnvio(5000)">
+                            <div class="d-flex align-items-center justify-content-between w-100">
+                                <div class="d-flex align-items-center">
+                                    <div class="icon-box"><i class="fas fa-motorcycle"></i></div>
+                                    <div class="ms-3">
+                                        <h6 class="mb-0 fw-bold">Envío Express (30 min)</h6>
+                                        <small class="text-muted">Llega volando</small>
+                                    </div>
+                                </div>
+                                <span class="fw-bold text-dark">$5.000</span>
+                            </div>
+                        </label>
+
+                        <!-- Opción 2: Pickup -->
+                        <label class="delivery-card mt-3">
+                            <input type="radio" name="delivery" value="pickup" onchange="actualizarEnvio(0)">
+                            <div class="d-flex align-items-center justify-content-between w-100">
+                                <div class="d-flex align-items-center">
+                                    <div class="icon-box pickup"><i class="fas fa-store"></i></div>
+                                    <div class="ms-3">
+                                        <h6 class="mb-0 fw-bold">Recoger en Tienda</h6>
+                                        <small class="text-muted">Calle 45 #10-20</small>
+                                    </div>
+                                </div>
+                                <span class="fw-bold text-success">GRATIS</span>
+                            </div>
+                        </label>
+                    </div>
+                </section>
+
+                <!-- SECCIÓN 2: DATOS -->
+                <section class="checkout-section p-4 mb-4">
+                    <h5 class="fw-bold mb-4"><span class="badge rounded-circle me-2">2</span> Datos de Entrega</h5>
+                    <form id="shippingForm">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold text-muted">Nombre Completo</label>
+                                <input type="text" class="form-control" placeholder="Ej: Juan Pérez" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold text-muted">Celular / WhatsApp</label>
+                                <input type="tel" class="form-control" placeholder="300 123 4567" required>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label small fw-bold text-muted">Dirección Exacta</label>
+                                <input type="text" class="form-control" placeholder="Calle, Carrera, # Apto" required>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label small fw-bold text-muted">Instrucciones (Opcional)</label>
+                                <textarea class="form-control" rows="2" placeholder="Ej: Timbre dañado, dejar en portería..."></textarea>
+                            </div>
+                            <!-- Correo para Invitado -->
+                            <div class="col-12">
+                                <label class="form-label small fw-bold text-muted">Correo Electrónico (Para enviarte el recibo)</label>
+                                <input type="email" class="form-control" id="inputEmailInvitado" placeholder="tu@correo.com">
+                            </div>
+                        </div>
+                    </form>
+                </section>
+
+                <!-- SECCIÓN 3: PAGO -->
+                <section class="checkout-section p-4">
+                    <h5 class="fw-bold mb-4"><span class="badge rounded-circle me-2">3</span> Pago Seguro</h5>
+                    
+                    <div class="payment-methods">
+                        <!-- Nequi -->
+                        <label class="payment-option p-3 mb-2 d-flex align-items-center cursor-pointer">
+                            <input class="form-check-input me-3" type="radio" name="payment" id="payNequi" checked>
+                            <span><i class="fas fa-mobile-alt me-2 text-primary"></i> Nequi / Daviplata</span>
+                        </label>
+
+                        <!-- Efectivo -->
+                        <label class="payment-option p-3 mb-2 d-flex align-items-center cursor-pointer">
+                            <input class="form-check-input me-3" type="radio" name="payment" id="payCash">
+                            <span><i class="fas fa-money-bill-wave me-2 text-success"></i> Efectivo (Contraentrega)</span>
+                        </label>
+
+                        <!-- Tarjeta -->
+                        <label class="payment-option p-3 d-flex align-items-center cursor-pointer" onclick="toggleCard(true)">
+                            <input class="form-check-input me-3" type="radio" name="payment" id="payCard">
+                            <div class="d-flex justify-content-between w-100 align-items-center">
+                                <span><i class="far fa-credit-card me-2 text-warning"></i> Tarjeta Crédito/Débito</span>
+                                <div>
+                                    <i class="fab fa-cc-visa fa-lg me-1 text-primary"></i>
+                                    <i class="fab fa-cc-mastercard fa-lg text-danger"></i>
+                                </div>
+                            </div>
+                        </label>
+
+                        <!-- Formulario Tarjeta (Oculto) -->
+                        <div id="card-form-details" class="bg-light p-3 rounded mt-2 border d-none">
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <input type="text" class="form-control" placeholder="Número de Tarjeta">
+                                </div>
+                                <div class="col-6">
+                                    <input type="text" class="form-control" placeholder="MM/AA">
+                                </div>
+                                <div class="col-6">
+                                    <input type="text" class="form-control" placeholder="CVV">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+            <!-- COLUMNA DERECHA: RESUMEN -->
+            <div class="col-lg-5">
+                <div class="checkout-summary bg-white p-4 rounded shadow-sm sticky-top" style="top: 20px;">
+                    <h4 class="fw-bold mb-4 brand-font">Resumen de Compra</h4>
+                    
+                    <!-- Lista de productos (Simulada) -->
+                    <div class="checkout-list mb-3">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>1x Ron Viejo de Caldas</span>
+                            <span class="fw-bold">$55.000</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>2x Coca-Cola 1.5L</span>
+                            <span class="fw-bold">$12.000</span>
+                        </div>
+                    </div>
+                    
+                    <hr>
+
+                    <div class="d-flex justify-content-between mb-2 text-muted">
+                        <span>Subtotal</span>
+                        <span>$67.000</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-3 text-muted">
+                        <span>Envío</span>
+                        <span class="text-success fw-bold" id="shipping-cost">$5.000</span>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between align-items-center bg-light p-3 rounded mb-4">
+                        <span class="h5 mb-0 fw-bold">Total a Pagar</span>
+                        <span class="h4 mb-0 fw-bold text-primary" id="total-cost">$72.000</span>
+                    </div>
+
+                    <button class="btn btn-dark w-100 py-3 rounded-pill fw-bold shadow hover-scale" onclick="procesarPedido()">
+                        PAGAR AHORA <i class="fas fa-arrow-right ms-2"></i>
+                    </button>
+                    
+                    <div class="text-center mt-3 text-muted small">
+                        <i class="fas fa-shield-alt text-success me-1"></i> Transacción 100% Segura
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- MODAL ÉXITO (INVITADO) -->
+    <div class="modal fade" id="modalExito" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content modal-glass-success text-center p-4">
+                <div class="modal-body">
+                    
+                    <!-- Animación Check -->
+                    <div class="success-animation mb-3">
+                        <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                            <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
+                            <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                        </svg>
+                    </div>
+
+                    <h2 class="text-white fw-bold mb-1">¡Pago Exitoso!</h2>
+                    <p class="text-white-50 small mb-4">Tu pedido <span class="text-neon-green">#1025</span> ha sido confirmado.</p>
+
+                    <!-- OTP -->
+                    <div class="bg-dark border border-secondary rounded p-3 mb-4 position-relative overflow-hidden">
+                        <div class="glow-effect"></div>
+                        <p class="text-warning small text-uppercase fw-bold mb-1" style="letter-spacing: 1px;">CÓDIGO DE ENTREGA</p>
+                        <div class="display-4 fw-bold text-white" style="letter-spacing: 5px;">4590</div>
+                        <p class="text-white-50 small mb-0" style="font-size: 0.75rem;">
+                            <i class="fas fa-exclamation-circle me-1"></i> Guárdalo. El repartidor te lo pedirá.
+                        </p>
+                    </div>
+
+                    <!-- Acciones -->
+                    <div class="d-grid gap-2">
+                        <a href="https://wa.me/573001234567?text=Hola,%20soy%20Invitado.%20Mi%20pedido%20es%20%231025%20y%20mi%20código%20es%204590." 
+                           class="btn btn-success-glow rounded-pill fw-bold py-2 text-decoration-none" target="_blank">
+                            <i class="fab fa-whatsapp me-2"></i> Rastrear por WhatsApp
+                        </a>
+                        <button class="btn btn-outline-light rounded-pill btn-sm" onclick="window.location.href='index.html'">
+                            Volver al Inicio
+                        </button>
+                    </div>
+                    
+                    <p class="mt-3 mb-0 text-white-50 small" style="font-size: 0.7rem;">
+                        Recibo enviado a: <span id="email-confirm" class="text-white fw-bold">cliente@gmail.com</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+<footer class="footer-neutral">
+    <div class="container py-5">
+        <div class="row g-4">
+
+            <!-- SOBRE LA MARCA -->
+            <div class="col-md-3">
+                <h5 class="footer-title">Licores Aranjuez <br> 24 Horas</h5>
+                <p class="footer-text">
+                    © 2025 LA LICORERA ARANJUEZ 24/7<br>Todos los derechos reservados.
+                </p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <!-- DESPACHOS / CONTACTO -->
+            <div class="col-md-3">
+                <h6 class="footer-subtitle">Válida la legalidad de tu botella</h6>
+                <a href="https://syctrace.org/" class="footer-link">Válida tu botella</a>
+                <div class="top-bar-btn">
+                    <br><h6 class="footer-subtitle">Contacto</h6>
+                    <p class="footer-text"><i class="fas fa-phone me-2"></i>+57(324)763-9861</p>
+                </div>
+            </div>
+
+            <!-- ACCESO -->
+            <div class="col-md-3">
+                <h6 class="footer-subtitle">Acceso al negocio</h6>
+                <p><a href="login-empleado-admin.html" class="footer-link">Iniciar sesión</a></p>
+            </div>
+
+            <!-- HORARIO / LEGALES / DERECHO RESERVADOS -->
+            <div class="col-md-3">
+                <h6 class="footer-subtitle">Horario de atención</h6>
+                <p class="footer-text">24 horas Todos los días</p>
+                <h6 class="footer-subtitle">Trabaja con nosotros</h6>
+                <p><a href="empleo.html" class="footer-link">Formulario</a></p>
+                <p><a href="encuesta.html" class="footer-link">Ayudanos</a></p>
+                <p><a href="vip-club.html" class="footer-link">Vip</a></p>
+            </div>
+
+            <!-- AVISO LEGAL -->
+            <div class="text-center mt-3">
+                <p class="footer-warning">EL EXCESO DE ALCOHOL ES PERJUDICIAL PARA LA SALUD.  
+                PROHÍBASE EL EXPENDIO DE BEBIDAS EMBRIAGANTES A MENORES DE EDAD.</p>
+            </div>
+        </div>
+    </div>
+
+    <!--Botón PQR flotante--> 
+    <a class="pqr-float float-btn" href="contacto.html" aria-label="Ir a PQR"><i class="fas fa-file-alt"></i></a>
+    <!--Botón whatsapp flotante--> 
+    <a class="whatsapp-float float-btn" href="https://wa.me/message/LFTBW5TCQDGTJ1" target="_blank" aria-label="Contactar por WhatsApp"><i class="fab fa-whatsapp"></i></a>
+
+
+    <!-- Cart Offcanvas -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="carritoOffcanvas">
+        <div class="offcanvas-header bg-light">
+            <h5 class="offcanvas-title fw-bold"><i class="fas fa-shopping-bag me-2 text-success"></i>Tu Carrito</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column p-0">
+            <div id="lista-carrito" class="flex-grow-1 p-3"></div>
+            <div class="border-top p-3 bg-light">
+                <div class="d-flex justify-content-between mb-3">
+                    <span class="fw-bold">Total:</span>
+                    <span class="fw-bold fs-5 text-success" id="carrito-total">$0</span>
+                </div>
+                <div id="checkout-btn-container"></div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="Javascript/checkout.js"></script>
+</body>
+</html>

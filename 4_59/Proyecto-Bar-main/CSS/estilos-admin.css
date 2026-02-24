@@ -1,0 +1,51 @@
+:root {
+    --bg-dark: #0b0b0b; --panel-bg: #141414; --gold-primary: #D4AF37; --gold-dim: rgba(212, 175, 55, 0.15);
+    --text-main: #E5E5E5; --text-muted: #888888; --border-subtle: #2A2A2A;
+    --success-green: #27ae60; --danger-red: #c0392b;
+}
+body { background-color: var(--bg-dark); color: var(--text-main); font-family: 'Lato', sans-serif; overflow-x: hidden; }
+h1, h2, h3, h4, .brand-title, .modal-title { font-family: 'Cinzel', serif; letter-spacing: 1px; }
+#wrapper { display: flex; width: 100%; transition: 0.3s; }
+
+/* Sidebar */
+#sidebar-wrapper { min-width: 280px; background: #000; border-right: 1px solid var(--border-subtle); min-height: 100vh; display: flex; flex-direction: column; }
+.sidebar-header { padding: 40px 20px; text-align: center; border-bottom: 1px solid var(--border-subtle); }
+.brand-title { color: white; font-size: 1.6rem; font-weight: 700; margin: 0; }
+.brand-subtitle { color: var(--gold-primary); font-size: 0.7rem; letter-spacing: 4px; display: block; margin-top: 5px; }
+.list-group-item { background: transparent; border: none; color: var(--text-muted); padding: 16px 30px; font-size: 0.9rem; border-left: 3px solid transparent; cursor: pointer; display: flex; align-items: center; transition: 0.3s; text-decoration: none; }
+.list-group-item i { width: 30px; font-size: 1.1rem; text-align: center; margin-right: 10px; }
+.list-group-item:hover, .list-group-item.active { color: var(--gold-primary); background: linear-gradient(90deg, var(--gold-dim) 0%, transparent 100%); border-left-color: var(--gold-primary); }
+.nav-category { color: #444; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; padding: 25px 30px 10px; font-weight: 700; }
+
+/* Contenido */
+#page-content-wrapper { width: 100%; }
+.navbar-custom { background: var(--panel-bg); border-bottom: 1px solid var(--border-subtle); padding: 20px 40px; }
+.card-executive { background: var(--panel-bg); border: 1px solid var(--border-subtle); border-radius: 4px; padding: 30px; height: 100%; transition: 0.3s; }
+.card-executive:hover { transform: translateY(-5px); border-color: var(--gold-primary); }
+.kpi-value { color: white; font-size: 2.2rem; font-family: 'Cinzel', serif; margin: 0; }
+.trend-up { color: var(--success-green); } .trend-down { color: var(--danger-red); }
+
+/* Tablas */
+.table-executive { width: 100%; border-collapse: separate; border-spacing: 0; }
+.table-executive th { text-align: left; padding: 15px; color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; border-bottom: 1px solid var(--border-subtle); }
+.table-executive td { padding: 20px 15px; color: var(--text-main); border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.9rem; vertical-align: middle; }
+.table-executive tr:hover td { background: var(--gold-dim); }
+
+/* UI */
+.btn-gold { background: var(--gold-primary); color: #000; border: none; padding: 10px 25px; text-transform: uppercase; font-size: 0.8rem; font-weight: 700; transition: 0.3s; }
+.btn-gold:hover { background: #b5952f; color: #fff; }
+.status-badge { padding: 5px 12px; border-radius: 50px; font-size: 0.7rem; font-weight: 700; }
+.bg-success-dim { background: rgba(39, 174, 96, 0.15); color: #27ae60; border: 1px solid #27ae60; }
+.bg-danger-dim { background: rgba(192, 57, 43, 0.15); color: #e74c3c; border: 1px solid #e74c3c; }
+.bg-warning-dim { background: rgba(243, 156, 18, 0.15); color: #f1c40f; border: 1px solid #f1c40f; }
+
+/* Modales */
+.modal-content { background-color: #1a1a1a; border: 1px solid var(--gold-primary); color: var(--text-main); }
+.modal-header { border-bottom: 1px solid var(--border-subtle); } .modal-footer { border-top: 1px solid var(--border-subtle); }
+.btn-close { filter: invert(1); }
+.form-control, .form-select { background-color: #000; border: 1px solid var(--border-subtle); color: white; }
+.form-control:focus { background-color: #000; border-color: var(--gold-primary); color: white; box-shadow: 0 0 5px var(--gold-dim); }
+
+.d-none { display: none !important; } .fade-in { animation: fadeIn 0.5s ease-out; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 768px) { #wrapper { flex-direction: column; } #sidebar-wrapper { min-width: 100%; height: auto; } }

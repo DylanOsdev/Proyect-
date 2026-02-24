@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Suite | Licorera Aranjuez</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet" href="CSS/estilos-admin.css">
+</head>
+<body>
+
+    <div id="wrapper">
+        
+        <div id="sidebar-wrapper">
+            <div class="sidebar-header">
+                <h1 class="brand-title">ARANJUEZ</h1>
+                <span class="brand-subtitle">EXECUTIVE SUITE</span>
+            </div>
+            
+            <div class="list-group">
+                <div class="nav-category">Gerencia</div>
+                <a class="list-group-item active" onclick="navigate('dashboard', this)"><i class="fas fa-chart-line"></i> Dashboard</a>
+                <a class="list-group-item" onclick="navigate('finanzas', this)"><i class="fas fa-coins"></i> Finanzas & Caja</a>
+                
+                <div class="nav-category">Operación</div>
+                <a class="list-group-item" onclick="navigate('inventario', this)"><i class="fas fa-boxes"></i> Inventario</a>
+                <a class="list-group-item" onclick="navigate('logistica', this)"><i class="fas fa-map-marked-alt"></i> Torre de Control</a>
+                <a class="list-group-item" onclick="navigate('soporte', this)">
+                    <i class="fas fa-headset"></i> Mesa de Ayuda 
+                    <span class="badge bg-danger rounded-pill ms-auto" style="font-size: 0.6rem;">3</span>
+                </a>
+                
+                <div class="nav-category">Seguridad</div>
+                <a class="list-group-item" onclick="navigate('usuarios', this)"><i class="fas fa-users-cog"></i> Usuarios</a>
+                <a class="list-group-item" onclick="navigate('auditoria', this)"><i class="fas fa-fingerprint"></i> Auditoría Forense</a>
+
+                <div class="mt-5 px-4 pb-4">
+                    <a href="index.html" class="btn btn-outline-danger w-100 text-uppercase" style="font-size: 0.8rem; letter-spacing: 2px;">
+                        <i class="fas fa-sign-out-alt me-2"></i> Salir
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="page-content-wrapper">
+            
+            <nav class="navbar-custom d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-bars text-white fs-4 me-4 cursor-pointer" id="menu-toggle"></i>
+                    <h2 class="m-0 text-white" id="page-title">Visión General</h2>
+                </div>
+                <div class="d-flex align-items-center gap-4">
+                    <div class="position-relative">
+                        <i class="far fa-bell text-muted fs-5 cursor-pointer"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle"></span>
+                    </div>
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="text-end d-none d-md-block">
+                            <span class="d-block text-white fw-bold">Admin</span>
+                            <span class="d-block text-muted" style="font-size: 0.7rem;">SUPERVISOR</span>
+                        </div>
+                        <img src="https://ui-avatars.com/api/?name=Admin&background=D4AF37&color=000" class="rounded-circle border border-2 border-secondary" width="45">
+                    </div>
+                </div>
+            </nav>
+
+            <div class="p-4 p-md-5">
+
+                <section id="view-dashboard" class="fade-in">
+                    <div class="row g-4 mb-5">
+                        <div class="col-md-3">
+                            <div class="card-executive">
+                                <p class="kpi-label">Ventas Totales</p>
+                                <h3 class="kpi-value">$ 4.2M</h3>
+                                <p class="kpi-trend trend-up"><i class="fas fa-arrow-up"></i> 12% vs ayer</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card-executive" style="border-color: #27ae60;">
+                                <p class="kpi-label text-success">Utilidad Neta</p>
+                                <h3 class="kpi-value text-white">$ 1.1M</h3>
+                                <p class="kpi-trend text-muted">Margen: 26%</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card-executive" style="border-color: #f1c40f;">
+                                <p class="kpi-label text-warning">Stock Crítico</p>
+                                <h3 class="kpi-value text-white">5</h3>
+                                <p class="kpi-trend text-warning">Requiere compra</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card-executive" style="border-color: #c0392b;">
+                                <p class="kpi-label text-danger">Alertas</p>
+                                <h3 class="kpi-value text-white">1</h3>
+                                <p class="kpi-trend text-danger">Descuadre Caja</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row g-4">
+                        <div class="col-lg-8">
+                            <div class="card-executive">
+                                <h4 class="text-white mb-4">Rendimiento Financiero</h4>
+                                <div style="height: 300px;"><canvas id="chartVentas"></canvas></div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="card-executive">
+                                <h4 class="text-white mb-4">Top Categorías</h4>
+                                <div style="height: 250px;"><canvas id="chartProductos"></canvas></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="view-finanzas" class="d-none fade-in">
+                    <div class="card-executive mb-4 border-success" style="border-left: 4px solid #27ae60;">
+                        <div class="row text-center">
+                            <div class="col-md-4 border-end border-secondary">
+                                <p class="kpi-label">Ventas Totales</p><h3 class="text-white">$ 4.250.000</h3>
+                            </div>
+                            <div class="col-md-4 border-end border-secondary">
+                                <p class="kpi-label text-danger">Costos Operativos</p><h3 class="text-danger">$ 3.100.000</h3>
+                            </div>
+                            <div class="col-md-4">
+                                <p class="kpi-label text-success">GANANCIA NETA</p><h3 class="text-success fw-bold">$ 1.150.000</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-executive">
+                        <h3 class="text-white mb-4">Auditoría de Cierres de Caja</h3>
+                        <table class="table-executive">
+                            <thead><tr><th>Fecha</th><th>Empleado</th><th>Sistema</th><th>Real</th><th>Diferencia</th><th>Estado</th></tr></thead>
+                            <tbody>
+                                <tr><td>Hoy, 14:00</td><td>Carlos R.</td><td>$450.000</td><td>$450.000</td><td class="text-success">$0</td><td><span class="status-badge bg-success-dim">OK</span></td></tr>
+                                <tr><td>Ayer, 22:00</td><td>Ana L.</td><td>$820.000</td><td>$815.000</td><td class="text-danger">-$5.000</td><td><span class="status-badge bg-danger-dim">DESCUADRE</span></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="view-inventario" class="d-none fade-in">
+                    <div class="card-executive">
+                        <div class="d-flex justify-content-between align-items-center mb-5">
+                            <h3 class="text-white m-0">Inventario Maestro</h3>
+                            <button class="btn-gold" onclick="abrirModal('modalProducto')"><i class="fas fa-plus me-2"></i> Nuevo Producto</button>
+                        </div>
+                        <table class="table-executive">
+                            <thead><tr><th>Producto</th><th>SKU</th><th>Stock</th><th>Estado Lote</th><th>Precio</th></tr></thead>
+                            <tbody>
+                                <tr><td><span class="fw-bold">Buchanan's 12</span></td><td>WHS-BUCH-12</td><td class="text-white fw-bold">24</td><td><span class="status-badge bg-success-dim">OPTIMO</span></td><td>$145.000</td></tr>
+                                <tr><td><span class="fw-bold">Corona Extra</span></td><td>CER-COR-6</td><td class="text-danger fw-bold">5</td><td><span class="status-badge bg-warning-dim">VENCE 15 DÍAS</span></td><td>$28.000</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="view-logistica" class="d-none fade-in">
+                    <div class="row g-4">
+                        <div class="col-lg-8">
+                            <div class="card-executive p-0 overflow-hidden" style="height: 500px;">
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.0594347743!2d-75.5606!3d6.2559!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwMTUnMjEuMiJOIDc1wrAzMyczOC4yIlc!5e0!3m2!1ses!2sco!4v1620000000000!5m2!1ses!2sco" width="100%" height="100%" style="border:0; filter: grayscale(100%) invert(90%) contrast(1.2);" allowfullscreen="" loading="lazy"></iframe>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="card-executive">
+                                <h4 class="text-white mb-4">Flota Activa</h4>
+                                <div class="mb-3 p-3 border border-secondary rounded d-flex justify-content-between"><span class="text-white fw-bold">Carlos R.</span><span class="status-badge bg-success-dim">LIBRE</span></div>
+                                <div class="mb-3 p-3 border border-secondary rounded d-flex justify-content-between"><span class="text-white fw-bold">Juan P.</span><span class="status-badge bg-danger-dim">OCUPADO</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="view-soporte" class="d-none fade-in">
+                    <div class="card-executive">
+                        <h3 class="text-white mb-4">Bandeja de Tickets (PQRS)</h3>
+                        <table class="table-executive">
+                            <thead><tr><th>ID</th><th>Usuario</th><th>Asunto</th><th>Prioridad</th><th>Acción</th></tr></thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-gold">#TK-8821</td><td>Juan Pérez</td><td class="text-white">Pedido incompleto</td><td><span class="badge bg-danger">ALTA</span></td>
+                                    <td><button class="btn btn-sm btn-gold" onclick="abrirModal('modalTicket')">Responder</button></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-muted">#TK-8820</td><td>Invitado</td><td class="text-white">Consulta Cobertura</td><td><span class="badge bg-info">MEDIA</span></td>
+                                    <td><button class="btn btn-sm btn-outline-secondary">Ver</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="view-usuarios" class="d-none fade-in">
+                    <div class="card-executive">
+                        <div class="d-flex justify-content-between align-items-center mb-5">
+                            <h3 class="text-white m-0">Gestión de Acceso</h3>
+                            <button class="btn-gold" onclick="abrirModal('modalUsuario')"><i class="fas fa-user-plus me-2"></i> Nuevo Usuario</button>
+                        </div>
+                        <table class="table-executive">
+                            <thead><tr><th>Usuario</th><th>Rol</th><th>Estado</th><th>Acciones</th></tr></thead>
+                            <tbody>
+                                <tr><td><span class="fw-bold">Carlos R.</span></td><td><span class="badge bg-secondary">Cajero</span> <span class="badge bg-secondary">Repartidor</span></td><td><span class="status-badge bg-success-dim">ACTIVO</span></td><td><button class="btn btn-sm btn-outline-light"><i class="fas fa-edit"></i></button></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="view-auditoria" class="d-none fade-in">
+                    <div class="card-executive">
+                        <h3 class="text-white mb-4">Bitácora Forense</h3>
+                        <table class="table-executive" style="font-size: 0.85rem;">
+                            <thead><tr><th>Timestamp</th><th>Usuario</th><th>Evento</th><th>Detalle</th></tr></thead>
+                            <tbody>
+                                <tr><td class="text-muted">14:32:01</td><td class="text-gold">Admin</td><td class="text-warning">AJUSTE STOCK</td><td>Ron Viejo (10 -> 24)</td></tr>
+                                <tr><td class="text-muted">14:15:00</td><td>Sistema</td><td class="text-success">TRIGGER RESTOCK</td><td>Pedido Cancelado</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalProducto" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header"><h5 class="modal-title text-gold">Nuevo Producto</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+                <div class="modal-body">
+                    <input type="text" class="form-control mb-3" placeholder="Nombre">
+                    <div class="row"><div class="col-6"><input type="number" class="form-control" placeholder="Precio"></div><div class="col-6"><input type="number" class="form-control" placeholder="Costo"></div></div>
+                </div>
+                <div class="modal-footer"><button class="btn btn-gold">Guardar</button></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalUsuario" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header"><h5 class="modal-title text-gold">Crear Usuario</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+                <div class="modal-body"><input type="text" class="form-control mb-3" placeholder="Nombre"><input type="email" class="form-control" placeholder="Correo"></div>
+                <div class="modal-footer"><button class="btn btn-gold">Crear</button></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalTicket" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header"><h5 class="modal-title text-gold">Responder Ticket</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+                <div class="modal-body"><textarea class="form-control" rows="4" placeholder="Escribe tu respuesta..."></textarea></div>
+                <div class="modal-footer"><button class="btn btn-gold" data-bs-dismiss="modal">Enviar</button></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="Javascript/logica-admin.js"></script>
+</body>
+</html>

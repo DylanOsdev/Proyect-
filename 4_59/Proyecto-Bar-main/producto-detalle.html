@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anayón Selección 2022 75cl - Licorera Aranjuez 24/7</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/estilos.css">
+    <link rel="stylesheet" href="CSS/producto-detalle.css">
+</head>
+<body>
+ <!-- Top Bar -->
+<div class="top-menu-bar">
+    <div class="container top-bar-flex">
+        <span class="top-bar-text">🍸 Productos verificados Comercialización responsable y legal. 🍸</span>
+    </div>
+</div>
+
+
+<!-- Header Principal -->
+<header class="main-header-simple">
+    <div class="container">
+        <div class="row align-items-center py-3">
+
+            <!-- Logo -->
+            <div class="col-md-2">
+                <a href="index.html">
+                    <img src="img/logo.ico.png" alt="Licorera Aranjuez 24/7" class="img-fluid main-logo">
+                </a>
+            </div>
+
+            <!-- Buscador Central -->
+            <div class="col-md-7">
+                <div class="search-wrapper">
+                    <input type="search" class="form-control search-input-main" placeholder="Buscar..." aria-label="Buscar productos">
+                </div>
+            </div>
+
+            <!-- Iconos -->
+            <div class="col-md-3 text-end">
+                <div class="header-actions">
+
+                    <button class="icon-btn" aria-label="Favoritos">
+                        <i class="far fa-heart"></i>
+                    </button>
+
+                    <button class="icon-btn icon-cart" data-bs-toggle="offcanvas" data-bs-target="#carritoOffcanvas" aria-label="Carrito">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span id="cart-count-badge" class="cart-badge">0</span>
+                    </button>
+
+                    <a href="login-register-cliente.html" class="icon-btn text-decoration-none" aria-label="Ir a mi Perfil">
+        <i class="far fa-user-circle"></i>
+    </a>
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</header>
+
+    <!-- Breadcrumb -->
+    <section class="breadcrumb-section">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
+                    <li class="breadcrumb-item"><a href="catalogo.html">Catálogo</a></li>
+                    <li class="breadcrumb-item"><a href="catalogo.html">Whisky</a></li>
+                    <li class="breadcrumb-item active">Anayón Selección 2022</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Product Detail -->
+    <section class="product-detail-section py-5">
+        <div class="container">
+            <div class="row">
+                <!-- Columna Izquierda: Imágenes -->
+                <div class="col-lg-5">
+                    <div class="product-images">
+                        <!-- Imagen Principal -->
+                        <div class="main-image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1569529465841-dfecdab7503b?w=600&q=80" 
+                                 alt="Anayón Selección 2022" 
+                                 id="mainProductImage"
+                                 class="img-fluid">
+                            <button class="wishlist-btn">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                        
+                        <!-- Thumbnails -->
+                        <div class="thumbnails-wrapper mt-3">
+                            <div class="row g-2">
+                                <div class="col-3">
+                                    <img src="https://images.unsplash.com/photo-1569529465841-dfecdab7503b?w=150&q=80" 
+                                         class="img-fluid thumbnail active" 
+                                         onclick="cambiarImagen(this.src)">
+                                </div>
+                                <div class="col-3">
+                                    <img src="https://images.unsplash.com/photo-1564758866169-37fefb388c5c?w=150&q=80" 
+                                         class="img-fluid thumbnail" 
+                                         onclick="cambiarImagen(this.src)">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Columna Derecha: Información del Producto -->
+                <div class="col-lg-7">
+                    <div class="product-info-detail">
+                        
+                        <!-- Título -->
+                        <h1 class="product-title-detail">Anayón Selección 2022 75cl.</h1>
+                        
+                        <!-- Precio y Rating -->
+                        <div class="product-meta d-flex align-items-center gap-4 mb-3">
+                            <div class="product-price-large">$157.36 <span class="tax-text">IVA Incl.</span></div>
+                            <div class="product-stock">
+                                <i class="fas fa-check-circle text-success"></i> Disponible
+                            </div>
+                        </div>
+
+                        <!-- Cantidad -->
+                        <div class="quantity-selector mb-4">
+                            <label class="form-label fw-bold">Cantidad:</label>
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="quantity-controls">
+                                    <button class="btn-quantity" onclick="decrementarCantidad()">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <input type="number" id="cantidad-producto" value="1" min="1" max="10" readonly>
+                                    <button class="btn-quantity" onclick="incrementarCantidad()">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+                                <button class="btn btn-add-to-cart" onclick="agregarAlCarritoDetalle()">
+                                    <i class="fas fa-shopping-cart me-2"></i>
+                                    AÑADIR AL CARRITO
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Descripción -->
+                        <div class="product-description mb-4">
+                            <p>
+                                A rayón Selección es una DO Cariñena, la viticola región del noroeste de su nombre a una 
+                                variedad de uva, la Cariñena. Además su retrayan, El mismo nombre Cariñena, fue usado 
+                                para distinguir la Denominación de Origen en 1932, aserlo por otros vinos españoles.
+                            </p>
+                            <p>
+                                Encontrarán muy corporo, con toda todo un cultura en DO Cariñena correspondió 
+                                perfectamente con un período de nunca o otros prohibidos.
+                            </p>
+                        </div>
+
+                        <!-- Premios y Puntuaciones -->
+                        <div class="awards-section mb-4">
+                            <h6 class="fw-bold mb-3">Premios y puntuaciones:</h6>
+                            <ul class="awards-list">
+                                <li><i class="fas fa-medal text-warning me-2"></i> 91 puntos – Luis Pedroza</li>
+                                <li><i class="fas fa-medal text-warning me-2"></i> 92 puntos – Guía Proensa</li>
+                            </ul>
+                        </div>
+
+                        <!-- Características Técnicas -->
+                        <div class="technical-specs">
+                            <h6 class="fw-bold mb-3">Ficha Técnica:</h6>
+                            <div class="row g-2">
+                                <div class="col-md-6">
+                                    <div class="spec-item">
+                                        <span class="spec-label">Variedad:</span>
+                                        <span class="spec-value">Cariñena</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="spec-item">
+                                        <span class="spec-label">Tipo:</span>
+                                        <span class="spec-value">Tinto</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="spec-item">
+                                        <span class="spec-label">Región:</span>
+                                        <span class="spec-value">DO Cariñena</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="spec-item">
+                                        <span class="spec-label">Graduación:</span>
+                                        <span class="spec-value">15.7%</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="spec-item">
+                                        <span class="spec-label">Volumen:</span>
+                                        <span class="spec-value">75 cl</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="spec-item">
+                                        <span class="spec-label">Temperatura:</span>
+                                        <span class="spec-value">16-18°C</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Tabs (Descripción, Elaboración, Reseñas) -->
+    <section class="product-tabs-section py-5 bg-light">
+        <div class="container">
+            <ul class="nav nav-tabs product-tabs" role="tablist">
+                <li class="nav-item">
+                    <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#descripcion">
+                        <i class="fas fa-info-circle me-2"></i>Descripción
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#elaboracion">
+                        <i class="fas fa-flask me-2"></i>Elaboración
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#resenas">
+                        <i class="fas fa-comments me-2"></i>Reseñas
+                    </button>
+                </li>
+            </ul>
+
+            <div class="tab-content pt-4">
+                <!-- Descripción -->
+                <div class="tab-pane fade show active" id="descripcion">
+                    <div class="tab-content-box">
+                        <h5 class="mb-3">PRESENTACIÓN</h5>
+                        <p>
+                            Anayón Selección es un vino excepcional de la Denominación de Origen Cariñena, 
+                            elaborado con uvas cuidadosamente seleccionadas de viñedos centenarios. 
+                            Su color rojo cereza intenso y sus aromas complejos lo convierten en una joya enológica.
+                        </p>
+                        <h5 class="mt-4 mb-3">ELABORACIÓN</h5>
+                        <p>
+                            Nota de Cata: Rubi claro. Nariz compleja.
+                        </p>
+                        <p>
+                            Elaborado con técnicas tradicionales combinadas con la más moderna tecnología, 
+                            este vino pasa por un cuidadoso proceso de fermentación y crianza que le otorga 
+                            su carácter único y su perfil de sabor equilibrado.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Elaboración -->
+                <div class="tab-pane fade" id="elaboracion">
+                    <div class="tab-content-box">
+                        <h5 class="mb-3">ELABORACIÓN</h5>
+                        <p>
+                            Nota de Cata: Rubi claro. Nariz compleja. Boca con la variedad expresada de taninos y crianza bien integrados. 
+                            A propósito de la fermentación de las uvas Cariñena ha sido el distintivo de Cariñena & Garces. A pesar 
+                            de todas los otros D.O. más reconocidos Garces continúan hiendo en las Garces como su Denominación natural 
+                            El vino es un tinto de capa alta, sanos complejos, con cuerpo y volúmenes.
+                        </p>
+                        <ul class="mt-3">
+                            <li>Fermentación controlada a temperatura constante</li>
+                            <li>Crianza en barricas de roble francés</li>
+                            <li>Filtrado suave antes del embotellado</li>
+                            <li>Reposo en botella mínimo 6 meses</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Reseñas -->
+                <div class="tab-pane fade" id="resenas">
+                    <div class="tab-content-box">
+                        <div class="reviews-summary text-center mb-5">
+                            <div class="rating-large mb-3">
+                                <span class="rating-number">4.8</span>
+                                <span class="rating-max">/5</span>
+                            </div>
+                            <div class="stars-large mb-2">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <p class="text-muted">Basado en 8 opiniones de clientes</p>
+                            
+                            <!-- Barra de distribución de ratings -->
+                            <div class="rating-distribution mt-4">
+                                <div class="rating-bar-item">
+                                    <span>5★</span>
+                                    <div class="progress flex-grow-1 mx-3">
+                                        <div class="progress-bar bg-warning" style="width: 75%"></div>
+                                    </div>
+                                    <span>6</span>
+                                </div>
+                                <div class="rating-bar-item">
+                                    <span>4★</span>
+                                    <div class="progress flex-grow-1 mx-3">
+                                        <div class="progress-bar bg-warning" style="width: 25%"></div>
+                                    </div>
+                                    <span>2</span>
+                                </div>
+                                <div class="rating-bar-item">
+                                    <span>3★</span>
+                                    <div class="progress flex-grow-1 mx-3">
+                                        <div class="progress-bar bg-warning" style="width: 0%"></div>
+                                    </div>
+                                    <span>0</span>
+                                </div>
+                                <div class="rating-bar-item">
+                                    <span>2★</span>
+                                    <div class="progress flex-grow-1 mx-3">
+                                        <div class="progress-bar bg-warning" style="width: 0%"></div>
+                                    </div>
+                                    <span>0</span>
+                                </div>
+                                <div class="rating-bar-item">
+                                    <span>1★</span>
+                                    <div class="progress flex-grow-1 mx-3">
+                                        <div class="progress-bar bg-warning" style="width: 0%"></div>
+                                    </div>
+                                    <span>0</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Botón para dejar reseña -->
+                        <div class="text-center mb-4">
+                            <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#reviewModal">
+                                <i class="fas fa-pen me-2"></i>Escribir una reseña
+                            </button>
+                        </div>
+
+                        <!-- Lista de reseñas individuales -->
+                        <div class="reviews-list">
+                            <div class="review-item">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <div>
+                                        <strong>Carlos M.</strong>
+                                        <div class="review-stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                    <small class="text-muted">Hace 2 semanas</small>
+                                </div>
+                                <p>Excelente vino, muy equilibrado. Perfecto para acompañar carnes rojas.</p>
+                            </div>
+
+                            <div class="review-item">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <div>
+                                        <strong>María G.</strong>
+                                        <div class="review-stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                        </div>
+                                    </div>
+                                    <small class="text-muted">Hace 1 mes</small>
+                                </div>
+                                <p>Muy buen vino, aunque esperaba un poco más de cuerpo. Aún así, lo recomiendo.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Productos Relacionados -->
+    <section class="related-products py-5">
+        <div class="container">
+            <h3 class="section-title-simple mb-4">Productos Relacionados</h3>
+            <div class="row" id="related-products-container">
+                <!-- Se cargan dinámicamente -->
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer-neutral">
+    <div class="container py-5">
+        <div class="row g-4">
+
+            <!-- SOBRE LA MARCA -->
+            <div class="col-md-3">
+                <h5 class="footer-title">Licores Aranjuez <br> 24 Horas</h5>
+                <p class="footer-text">
+                    © 2025 LA LICORERA ARANJUEZ 24/7<br>Todos los derechos reservados.
+                </p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <!-- DESPACHOS / CONTACTO -->
+            <div class="col-md-3">
+                <h6 class="footer-subtitle">Válida la legalidad de tu botella</h6>
+                <a href="https://syctrace.org/" class="footer-link">Válida tu botella</a>
+                <div class="top-bar-btn">
+                    <br><h6 class="footer-subtitle">Contacto</h6>
+                    <p class="footer-text"><i class="fas fa-phone me-2"></i>+57(324)763-9861</p>
+                </div>
+            </div>
+
+            <!-- ACCESO -->
+            <div class="col-md-3">
+                <h6 class="footer-subtitle">Acceso al negocio</h6>
+                <p><a href="login-empleado-admin.html" class="footer-link">Iniciar sesión</a></p>
+            </div>
+
+            <!-- HORARIO / LEGALES / DERECHO RESERVADOS -->
+            <div class="col-md-3">
+                <h6 class="footer-subtitle">Horario de atención</h6>
+                <p class="footer-text">24 horas Todos los días</p>
+                <h6 class="footer-subtitle">Trabaja con nosotros</h6>
+                <p><a href="empleo.html" class="footer-link">Formulario</a></p>
+            </div>
+
+            <!-- AVISO LEGAL -->
+            <div class="text-center mt-3">
+                <p class="footer-warning">EL EXCESO DE ALCOHOL ES PERJUDICIAL PARA LA SALUD.  
+                PROHÍBASE EL EXPENDIO DE BEBIDAS EMBRIAGANTES A MENORES DE EDAD.</p>
+            </div>
+        </div>
+    </div>
+
+    <!--Botón PQR flotante--> 
+    <a class="pqr-float float-btn" href="contacto.html" aria-label="Ir a PQR"><i class="fas fa-file-alt"></i></a>
+    <!--Botón whatsapp flotante--> 
+    <a class="whatsapp-float float-btn" href="https://wa.me/message/LFTBW5TCQDGTJ1" target="_blank" aria-label="Contactar por WhatsApp"><i class="fab fa-whatsapp"></i></a>
+
+
+    <!-- Cart Offcanvas -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="carritoOffcanvas">
+        <div class="offcanvas-header bg-light">
+            <h5 class="offcanvas-title fw-bold"><i class="fas fa-shopping-bag me-2 text-success"></i>Tu Carrito</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column p-0">
+            <div id="lista-carrito" class="flex-grow-1 p-3"></div>
+            <div class="border-top p-3 bg-light">
+                <div class="d-flex justify-content-between mb-3">
+                    <span class="fw-bold">Total:</span>
+                    <span class="fw-bold fs-5 text-success" id="carrito-total">$0</span>
+                </div>
+                <div id="checkout-btn-container"></div>
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="Javascript/main.js"></script>
+</body>
+</html>

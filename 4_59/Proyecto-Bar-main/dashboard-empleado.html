@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Panel - Licorera Aranjuez</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;800&family=Kaushan+Script&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="CSS/estilos-empleado.css">
+</head>
+<body>
+
+    <div class="d-flex" id="wrapper">
+        
+        <div id="sidebar-wrapper">
+            <div class="sidebar-heading text-center py-4 fs-4 fw-bold text-uppercase border-bottom border-secondary" style="color: #fff;">
+                <span class="brand-font text-neon-green">Aranjuez</span> Staff
+            </div>
+            <div class="list-group list-group-flush my-3 px-3">
+                <a class="nav-btn active" onclick="cambiarVista('dashboard', this)">
+                    <i class="fas fa-tachometer-alt"></i> Resumen
+                </a>
+                <a class="nav-btn" onclick="cambiarVista('reparto', this)">
+                    <i class="fas fa-motorcycle"></i> Zona de Reparto
+                </a>
+                <a class="nav-btn" onclick="cambiarVista('pos', this)">
+                    <i class="fas fa-cash-register"></i> Caja Rápida
+                </a>
+                <a class="nav-btn" onclick="cambiarVista('historial', this)">
+                    <i class="fas fa-history"></i> Historial
+                </a>
+                <a class="nav-btn" onclick="cambiarVista('perfil', this)">
+                    <i class="fas fa-user-cog"></i> Mi Perfil
+                </a>
+                
+                <a class="nav-btn mt-4" style="color: #ffcc00; border: 1px solid rgba(255,204,0,0.2);" onclick="abrirModalArqueo()">
+                    <i class="fas fa-file-invoice-dollar"></i> Cierre de Caja
+                </a>
+
+                <a href="index.html" class="nav-btn logout"><i class="fas fa-sign-out-alt"></i> Salir</a>
+            </div>
+        </div>
+
+        <div id="page-content-wrapper">
+            
+            <nav class="navbar navbar-expand-lg navbar-dark bg-transparent py-4 px-4">
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-align-left text-white fs-4 me-3" id="menu-toggle" style="cursor: pointer;"></i>
+                    <h2 class="fs-2 m-0 text-white fw-bold" id="titulo-pagina">Panel Operativo</h2>
+                </div>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+                        <li class="nav-item me-4">
+                            <div class="d-flex align-items-center bg-dark bg-opacity-50 px-3 py-2 rounded-pill border border-secondary">
+                                <div class="form-check form-switch m-0">
+                                    <input class="form-check-input" type="checkbox" id="switchEstado" checked onchange="toggleDisponibilidad()">
+                                    <label class="form-check-label fw-bold text-neon-green ms-2 status-label" id="labelEstado">EN LÍNEA 🟢</label>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <img src="https://ui-avatars.com/api/?name=Carlos+R&background=00ff88&color=000" class="rounded-circle border border-light" width="40">
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="container-fluid px-4">
+
+                <section id="vista-dashboard" class="vista-seccion fade-in">
+                    <div class="row g-4 my-2">
+                        <div class="col-md-4">
+                            <div class="p-4 card-glass d-flex justify-content-between align-items-center">
+                                <div>
+                                    <p class="mb-0 text-white-50 small text-uppercase fw-bold">Entregas Hoy</p>
+                                    <h3 class="fs-2 fw-bold text-white" id="kpiEntregas">12</h3>
+                                </div>
+                                <div class="icon-box-rounded bg-green-glow"><i class="fas fa-check-circle fs-2 text-neon-green"></i></div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="p-4 card-glass d-flex justify-content-between align-items-center">
+                                <div>
+                                    <p class="mb-0 text-white-50 small text-uppercase fw-bold">Efectivo Caja</p>
+                                    <h3 class="fs-2 fw-bold text-success" id="kpiDinero">$450.000</h3>
+                                </div>
+                                <div class="icon-box-rounded bg-dark border border-success"><i class="fas fa-wallet fs-2 text-success"></i></div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="p-4 card-glass d-flex justify-content-between align-items-center">
+                                <div>
+                                    <p class="mb-0 text-white-50 small text-uppercase fw-bold">Calificación</p>
+                                    <h3 class="fs-2 fw-bold text-warning">4.9 ★</h3>
+                                </div>
+                                <div class="icon-box-rounded bg-dark border border-warning"><i class="fas fa-star fs-2 text-warning"></i></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-12"><h5 class="text-white fw-bold mb-3">Accesos Directos</h5></div>
+                        <div class="col-md-6">
+                            <div class="card-glass p-4 text-center hover-scale" onclick="cambiarVista('reparto', document.querySelectorAll('.nav-btn')[1])">
+                                <i class="fas fa-motorcycle fs-1 text-neon-green mb-3"></i>
+                                <h4 class="text-white">Ir a Repartos</h4>
+                                <p class="text-white-50 small">Gestión de envíos y OTP</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card-glass p-4 text-center hover-scale" onclick="cambiarVista('pos', document.querySelectorAll('.nav-btn')[2])">
+                                <i class="fas fa-cash-register fs-1 text-neon-cyan mb-3"></i>
+                                <h4 class="text-white">Ir a Caja</h4>
+                                <p class="text-white-50 small">Ventas de mostrador</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="vista-reparto" class="vista-seccion d-none fade-in">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <div class="card-glass card-active-order p-4" id="tarjeta-pedido">
+                                <div id="contenido-pedido">
+                                    <div class="d-flex justify-content-between align-items-center mb-4 border-bottom border-secondary pb-3">
+                                        <div>
+                                            <span class="badge bg-warning text-dark mb-2">EN CAMINO</span>
+                                            <h3 class="text-white fw-bold m-0">Pedido #1024</h3>
+                                        </div>
+                                        <button class="btn btn-outline-light btn-sm rounded-pill"><i class="fas fa-map-marker-alt me-2"></i>Waze</button>
+                                    </div>
+
+                                    <div class="p-3 rounded mb-4" style="background: rgba(0,0,0,0.3); border: 1px solid var(--glass-border);">
+                                        <h4 class="text-white">Juan Pérez</h4>
+                                        <p class="text-neon-cyan fs-5"><i class="fas fa-phone me-2"></i> 300 123 4567</p>
+                                        <p class="text-white fs-5"><i class="fas fa-home me-2"></i> Calle 45 #10-20, Aranjuez</p>
+                                        <small class="text-muted fst-italic">"Reja negra, timbre duro."</small>
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item bg-transparent text-white d-flex justify-content-between px-0 border-secondary">
+                                                <span>1x Ron Viejo de Caldas</span> <span>$55.000</span>
+                                            </li>
+                                        </ul>
+                                        <div class="d-flex justify-content-between align-items-center mt-3 pt-2 border-top border-secondary">
+                                            <span class="fs-5 text-white">Total a Cobrar:</span>
+                                            <span class="fs-3 fw-bold text-success">$55.000</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="p-4 rounded border border-success" style="background: rgba(0, 255, 136, 0.05);">
+                                        <label class="text-neon-green fw-bold d-block text-center mb-3">🔐 SEGURIDAD (OTP: 4590)</label>
+                                        <div class="form-check mb-3 d-flex justify-content-center">
+                                            <input class="form-check-input me-2" type="checkbox" id="checkEdad">
+                                            <label class="form-check-label text-white" for="checkEdad">Verifiqué Cédula (+18)</label>
+                                        </div>
+                                        <div class="row g-2">
+                                            <div class="col-8"><input type="number" class="form-control otp-input" placeholder="0000" id="inputOTP"></div>
+                                            <div class="col-4"><button class="btn btn-success w-100 h-100 fs-4 rounded-3 fw-bold" onclick="validarEntrega()"><i class="fas fa-check"></i></button></div>
+                                        </div>
+                                    </div>
+                                    <div class="text-center mt-3">
+                                        <button class="btn btn-link text-danger text-decoration-none" onclick="reportarNovedad()">⚠️ Reportar Problema</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="vista-pos" class="vista-seccion d-none fade-in">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <div class="card-glass p-4">
+                                <div class="d-flex justify-content-between align-items-center mb-4">
+                                    <h3 class="text-white fw-bold m-0"><i class="fas fa-cash-register me-2 text-neon-cyan"></i>Nueva Venta</h3>
+                                    <span class="badge bg-dark border border-secondary">Stock en Vivo</span>
+                                </div>
+                                <form>
+                                    <div class="mb-4">
+                                        <label class="text-white-50 small fw-bold mb-2">PRODUCTO</label>
+                                        <select class="form-select form-select-dark p-3 fs-5" id="selectProducto" onchange="actualizarTotalPOS()">
+                                            <option value="0" data-price="0">Seleccione...</option>
+                                            <option value="1" data-price="45000">Aguardiente Antioqueño ($45k)</option>
+                                            <option value="2" data-price="55000" class="text-warning fw-bold">⚠ Ron Medellín (Quedan 2)</option>
+                                            <option value="3" data-price="28000">Cerveza Corona ($28k)</option>
+                                        </select>
+                                    </div>
+                                    <div class="row mb-4">
+                                        <div class="col-4">
+                                            <label class="text-white-50 small fw-bold mb-2">CANTIDAD</label>
+                                            <input type="number" class="form-control form-control-dark p-3 text-center fw-bold fs-4" id="posCantidad" value="1" min="1" onchange="actualizarTotalPOS()">
+                                        </div>
+                                        <div class="col-8">
+                                            <label class="text-white-50 small fw-bold mb-2">TOTAL A PAGAR</label>
+                                            <input type="text" class="form-control form-control-dark p-3 text-end fw-bold text-neon-green fs-4" id="posTotal" value="$0" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="d-grid gap-2">
+                                        <button type="button" class="btn btn-primary fw-bold py-3 fs-4" onclick="procesarVentaPOS()">
+                                            <i class="fas fa-print me-2"></i> COBRAR Y FACTURAR
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="vista-historial" class="vista-seccion d-none fade-in">
+                    <div class="card-glass p-4">
+                        <h3 class="text-white fw-bold mb-4">Historial de Turno</h3>
+                        <table class="table table-dark table-hover bg-transparent">
+                            <thead><tr class="text-secondary small text-uppercase"><th>Hora</th><th>Descripción</th><th>Valor</th><th>Estado</th></tr></thead>
+                            <tbody class="text-white align-middle">
+                                <tr><td>10:30 AM</td><td>Pedido #1023 (Ana Lopez)</td><td class="text-success">+$28.000</td><td><span class="badge bg-success rounded-pill">Entregado</span></td></tr>
+                                <tr><td>09:15 AM</td><td>Venta Mostrador (Aguardiente)</td><td class="text-success">+$45.000</td><td><span class="badge bg-primary rounded-pill">Facturado</span></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="vista-perfil" class="vista-seccion d-none fade-in">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <div class="card-glass p-5 text-center position-relative overflow-hidden">
+                                <div style="position: absolute; top: -50px; right: -50px; width: 200px; height: 200px; background: var(--neon-purple); filter: blur(100px); opacity: 0.3;"></div>
+                                <img src="https://ui-avatars.com/api/?name=Carlos+R&background=00ff88&color=000&size=128" class="rounded-circle border border-2 border-white shadow-lg mb-3" width="100">
+                                <h3 class="text-white fw-bold">Carlos Rodríguez</h3>
+                                <p class="text-neon-cyan">Repartidor & Cajero | ID: 8841</p>
+                                <hr class="border-secondary my-4">
+                                <div class="row text-start">
+                                    <div class="col-6 mb-3"><label class="text-muted small">Correo</label><div class="text-white">carlos.r@aranjuez.com</div></div>
+                                    <div class="col-6 mb-3"><label class="text-muted small">Celular</label><div class="text-white">300 123 4567</div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalArqueo" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-dark text-white border-secondary" style="backdrop-filter: blur(20px);">
+                <div class="modal-header border-secondary">
+                    <h5 class="modal-title fw-bold text-warning">Cierre de Caja</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="d-flex justify-content-between mb-3">
+                        <span>Sistema:</span> <span class="fw-bold text-success fs-5" id="arqueoSistema">$450.000</span>
+                    </div>
+                    <label class="form-label text-muted small fw-bold">DINERO REAL EN MANO</label>
+                    <input type="number" class="form-control bg-dark text-white border-secondary fw-bold fs-4 text-center" id="arqueoReal" placeholder="0">
+                    <div id="arqueoResultado" class="alert mt-3 d-none"></div>
+                </div>
+                <div class="modal-footer border-secondary">
+                    <button type="button" class="btn btn-outline-light" onclick="verificarArqueo()">Verificar</button>
+                    <button type="button" class="btn btn-warning fw-bold" disabled id="btnCerrarTurno">Cerrar Turno</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="Javascript/logica-empleado.js"></script>
+</body>
+</html>

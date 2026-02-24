@@ -1,0 +1,148 @@
+
+:root {
+    --bg-dark: #0f0c29;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --neon-green: #00ff88;
+    --neon-cyan: #00d2ff;
+    --neon-purple: #b052c9;
+    --neon-red: #ff4b4b;
+    --text-main: #ffffff;
+}
+
+body {
+    background-color: var(--bg-dark);
+    font-family: 'Outfit', sans-serif;
+    color: var(--text-main);
+    overflow-x: hidden;
+    /* Fondo Aurora Sutil */
+    background-image: 
+        radial-gradient(circle at 15% 50%, rgba(176, 82, 201, 0.15) 0%, transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(0, 210, 255, 0.15) 0%, transparent 25%);
+}
+
+#wrapper { display: flex; width: 100%; transition: 0.3s; }
+
+/* === SIDEBAR === */
+#sidebar-wrapper {
+    min-height: 100vh;
+    margin-left: -17rem;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-right: 1px solid var(--glass-border);
+    transition: margin 0.25s ease-out;
+    width: 17rem;
+    position: fixed;
+    z-index: 1000;
+}
+
+#wrapper.toggled #sidebar-wrapper { margin-left: 0; }
+#page-content-wrapper { width: 100%; transition: 0.3s; }
+#wrapper.toggled #page-content-wrapper { margin-left: 17rem; } /* Empuja el contenido */
+
+/* Botones del Menú */
+.nav-btn {
+    padding: 15px 25px;
+    color: #a0a0a0;
+    text-decoration: none;
+    border-radius: 12px;
+    margin-bottom: 8px;
+    display: flex; align-items: center;
+    transition: all 0.3s;
+    font-weight: 500;
+    cursor: pointer;
+    border-left: 4px solid transparent;
+}
+
+.nav-btn i { width: 35px; font-size: 1.2rem; text-align: center; }
+
+.nav-btn:hover, .nav-btn.active {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.05);
+    border-left-color: var(--neon-green);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.nav-btn.logout { margin-top: auto; color: var(--neon-red); }
+.nav-btn.logout:hover { border-left-color: var(--neon-red); background: rgba(255, 75, 75, 0.1); }
+
+/* === TARJETAS (GLASS) === */
+.card-glass {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    backdrop-filter: blur(16px);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s;
+}
+
+/* KPIs */
+.icon-box-rounded {
+    width: 50px; height: 50px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem;
+}
+
+/* === ZONA REPARTO === */
+.card-active-order {
+    border: 1px solid var(--neon-green);
+    box-shadow: 0 0 25px rgba(0, 255, 136, 0.15);
+    animation: pulse 2s infinite;
+}
+@keyframes pulse { 
+    0% { box-shadow: 0 0 15px rgba(0,255,136,0.1); } 
+    50% { box-shadow: 0 0 30px rgba(0,255,136,0.25); } 
+    100% { box-shadow: 0 0 15px rgba(0,255,136,0.1); } 
+}
+
+.otp-input {
+    background: rgba(0,0,0,0.3) !important;
+    border: 1px solid var(--glass-border) !important;
+    color: white !important;
+    text-align: center;
+    font-size: 2.5rem;
+    letter-spacing: 15px;
+    height: 80px;
+    border-radius: 15px;
+    font-weight: 800;
+}
+.otp-input:focus {
+    border-color: var(--neon-green) !important;
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+    outline: none;
+}
+
+/* === CAJA RÁPIDA (POS) === */
+.form-control-dark, .form-select-dark {
+    background-color: rgba(255,255,255,0.05) !important;
+    border: 1px solid var(--glass-border) !important;
+    color: white !important;
+    padding: 12px;
+}
+.form-control-dark:focus, .form-select-dark:focus {
+    background-color: rgba(255,255,255,0.1) !important;
+    border-color: var(--neon-cyan) !important;
+    box-shadow: none;
+}
+
+/* === UTILIDADES === */
+.text-neon-green { color: var(--neon-green) !important; text-shadow: 0 0 10px rgba(0,255,136,0.4); }
+.text-neon-cyan { color: var(--neon-cyan) !important; text-shadow: 0 0 10px rgba(0,210,255,0.4); }
+.bg-green-glow { background: rgba(0,255,136,0.1); border: 1px solid rgba(0,255,136,0.2); }
+.brand-font { font-family: 'Kaushan Script', cursive; font-size: 1.8rem; }
+
+.hover-scale:hover { transform: translateY(-5px); cursor: pointer; border-color: rgba(255,255,255,0.3); }
+
+/* Animación de entrada */
+.fade-in { animation: fadeIn 0.4s ease-out forwards; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    #sidebar-wrapper { margin-left: -17rem; } /* Oculto por defecto en móvil */
+    #wrapper.toggled #sidebar-wrapper { margin-left: 0; }
+    #wrapper.toggled #page-content-wrapper { margin-left: 0; position: fixed; width: 100%; } /* Overlay effect */
+    .card-active-order { margin-bottom: 20px; }
+}

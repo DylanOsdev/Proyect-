@@ -1,0 +1,106 @@
+:root {
+    --bg-body: #F5F7FA;
+    --surface: #FFFFFF;
+    --primary: #7B2CBF;
+    --primary-light: #F3E5F5;
+    --text: #2D3748;
+    --text-muted: #A0AEC0;
+    --radius: 20px;
+    --shadow: 0 8px 30px rgba(0,0,0,0.04);
+}
+
+body {
+    background-color: var(--bg-body);
+    font-family: 'Outfit', sans-serif;
+    color: var(--text);
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* === LAYOUT GRID === */
+.app-layout {
+    display: grid;
+    grid-template-columns: 90px 1fr 380px;
+    height: 100vh;
+}
+
+/* 1. RAIL DE NAVEGACIÓN */
+.nav-rail {
+    background: var(--surface);
+    display: flex; flex-direction: column; align-items: center;
+    padding: 30px 0; border-right: 1px solid #eee; z-index: 10;
+}
+.brand-icon {
+    font-family: 'Kaushan Script', cursive; color: var(--primary); font-size: 1.5rem;
+    margin-bottom: 50px; background: var(--primary-light); width: 50px; height: 50px;
+    display: flex; align-items: center; justify-content: center; border-radius: 15px;
+}
+.nav-item {
+    width: 50px; height: 50px; display: flex; align-items: center; justify-content: center;
+    color: var(--text-muted); border-radius: 14px; margin-bottom: 15px; cursor: pointer;
+    transition: 0.3s; font-size: 1.2rem;
+}
+.nav-item:hover { background: #f3f4f6; color: var(--primary); }
+.nav-item.active { background: var(--primary); color: white; box-shadow: 0 10px 20px rgba(123, 44, 191, 0.3); }
+
+/* Tooltip */
+.nav-item:hover::after {
+    content: attr(title); position: absolute; left: 60px; background: #333; color: #fff;
+    padding: 5px 10px; border-radius: 8px; font-size: 0.8rem; white-space: nowrap; z-index: 100;
+}
+
+/* 2. FEED CENTRAL */
+.main-feed {
+    padding: 40px 60px; overflow-y: auto; scroll-behavior: smooth;
+}
+.feed-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 30px; }
+.page-title { font-weight: 800; font-size: 2rem; letter-spacing: -1px; margin: 0; }
+
+.content-card {
+    background: var(--surface); border-radius: var(--radius); padding: 30px;
+    box-shadow: var(--shadow); margin-bottom: 25px; border: 1px solid rgba(0,0,0,0.02);
+}
+.bg-gradient-purple { background: linear-gradient(135deg, #7B2CBF, #9D4EDD); }
+
+/* Tablas */
+.table-app th { color: var(--text-muted); font-weight: 600; text-transform: uppercase; font-size: 0.75rem; border: none; padding-bottom: 15px; }
+.table-app td { padding: 20px 0; border-top: 1px solid #f9f9f9; vertical-align: middle; }
+.badge-soft { padding: 6px 12px; border-radius: 30px; font-weight: 700; font-size: 0.75rem; }
+.badge-green { background: #e6fffa; color: #27ae60; }
+.badge-yellow { background: #fffaf0; color: #ff9f1c; }
+
+/* 3. PANEL DERECHO */
+.right-panel {
+    background: var(--surface); border-left: 1px solid #eee; padding: 30px;
+    display: flex; flex-direction: column; overflow-y: auto;
+}
+.active-order {
+    background: #1a1a1a; color: white; padding: 25px; border-radius: var(--radius);
+    position: relative; overflow: hidden; margin-bottom: 30px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+.otp-display {
+    font-size: 2.5rem; font-weight: 800; letter-spacing: 5px; text-align: center;
+    color: #FF9F1C; margin: 15px 0; background: rgba(255,255,255,0.1); border-radius: 12px;
+}
+
+.address-item {
+    display: flex; gap: 15px; padding: 15px; border-radius: 16px;
+    background: var(--bg-body); margin-bottom: 10px; align-items: center; cursor: pointer; transition: 0.2s;
+}
+.address-item:hover { background: #e9ecef; }
+.address-icon { width: 40px; height: 40px; background: white; display: flex; align-items: center; justify-content: center; border-radius: 50%; color: var(--primary); }
+
+/* UI */
+.brand-font { font-family: 'Kaushan Script', cursive; }
+.form-control { background: #f8f9fa; border: 1px solid #eee; border-radius: 12px; padding: 12px; }
+.form-control:focus { background: #fff; box-shadow: 0 0 0 4px rgba(123, 44, 191, 0.1); border-color: var(--primary); }
+.btn-primary { background-color: var(--primary); border: none; }
+.btn-primary:hover { background-color: #5e2194; }
+.d-none { display: none !important; }
+.fade-in { animation: fadeIn 0.4s ease-out; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Responsive */
+@media (max-width: 1200px) { .app-layout { grid-template-columns: 80px 1fr; } .right-panel { display: none; } }
+@media (max-width: 768px) { .app-layout { display: block; overflow-y: auto; } .nav-rail { display: none; } .main-feed { padding: 20px; } }

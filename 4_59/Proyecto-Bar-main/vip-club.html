@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Club VIP - Licorera 24/7</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="CSS/estilos-vip.css">
+</head>
+<body>
+    
+    <div class="aurora-container">
+        <div class="aurora-blob blob-1"></div>
+        <div class="aurora-blob blob-2"></div>
+        <div class="aurora-blob blob-3"></div>
+    </div>
+
+    <div class="container position-relative main-content">
+        <div class="row align-items-center justify-content-center min-vh-100 py-5">
+            
+            <div class="col-lg-6 mb-5 mb-lg-0 text-center text-lg-start">
+                <h1 class="brand-title">Club VIP</h1>
+                <h2 class="subtitle mb-4">Únete y recibe ofertas secretas.</h2>
+                <p class="lead text-white-50 mb-4">Sé el primero en enterarte de nuestros descuentos flash, nuevos lanzamientos y eventos de cata exclusivos.</p>
+                
+                <ul class="list-unstyled mb-4 text-start d-inline-block benefit-list">
+                    <li class="mb-3"><i class="fas fa-check-circle text-success me-3"></i> 10% OFF primera compra</li>
+                    <li class="mb-3"><i class="fas fa-check-circle text-success me-3"></i> Envíos gratis los martes</li>
+                    <li class="mb-3"><i class="fas fa-check-circle text-success me-3"></i> Regalo de cumpleaños 🎂</li>
+                </ul>
+            </div>
+            
+            <div class="col-lg-5 offset-lg-1">
+                <div class="card card-glass border-0 p-4">
+                    <div class="card-body">
+                        <form id="vipForm">
+                            <div class="mb-4">
+                                <label class="form-label fw-bold text-white small text-uppercase">Correo Electrónico</label>
+                                <div class="input-group">
+                                    <span class="input-group-text rounded-start"><i class="far fa-envelope"></i></span>
+                                    <input type="email" class="form-control rounded-end" placeholder="ejemplo@correo.com" required id="inputEmail">
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label class="form-label fw-bold text-white small text-uppercase">Fecha de Cumpleaños</label>
+                                <input type="date" class="form-control rounded" required>
+                            </div>
+                            
+                            <div class="form-check mb-4">
+                                <input class="form-check-input" type="checkbox" id="checkTerms" required>          
+                                <label class="form-check-label small text-white-50" for="checkTerms">
+                                    Acepto recibir correos y la 
+                                    <a href="#" class="text-neon text-decoration-none border-bottom border-light" id="btnLegal">política de datos</a>.
+                                </label>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-glow w-100 py-3 fw-bold rounded-pill text-uppercase shadow-lg text-white">
+                                ¡QUIERO ENTRAR! 🚀
+                            </button>
+                        </form>
+                        
+                        <div class="text-center mt-4">
+                            <a href="index.html" class="small text-white-50 text-decoration-none hover-white">
+                                <i class="fas fa-arrow-left me-1"></i> No gracias, volver a la tienda
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalExito" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content modal-glass-content text-center p-4">
+                <div class="modal-body">
+                    <div class="confetti-icon mb-3"></div>
+                    <h2 class="fw-bold text-neon mb-3">¡Bienvenido al Club!</h2>
+                    <p class="text-white-50 mb-4">Te has suscrito correctamente. Revisa tu correo <strong id="correoConfirmacion" class="text-white"></strong> para obtener tu cupón.</p>
+                    <button class="btn btn-glow rounded-pill px-5 fw-bold text-white" data-bs-dismiss="modal" onclick="window.location.href='index.html'">IR A COMPRAR</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalLegal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content modal-glass-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold text-neon"><i class="fas fa-shield-alt me-2"></i>Política de Privacidad</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-white-50 small">
+                    <p><strong>1. Responsable:</strong> Licorera Aranjuez 24/7 garantiza la protección de tus datos personales.</p>
+                    <p><strong>2. Uso:</strong> Solo enviaremos ofertas y regalos. No spam.</p>
+                    <p>Tus datos están encriptados y seguros.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="Javascript/logica-vip.js"></script>
+</body>
+</html>

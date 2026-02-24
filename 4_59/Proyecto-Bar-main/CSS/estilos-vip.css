@@ -1,0 +1,147 @@
+
+body {
+    background-color: #0f0c29;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden; /* Evita scroll horizontal */
+    position: relative;
+}
+
+/* === 1. FONDO AURORA (ANIMACIÓN LÍQUIDA) === */
+.aurora-container {
+    position: fixed; /* Fixed para que no se mueva al hacer scroll */
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    background: #0f0c29;
+}
+
+.aurora-blob {
+    position: absolute;
+    filter: blur(80px);
+    opacity: 0.6;
+    border-radius: 50%;
+    will-change: transform, border-radius;
+}
+
+/* Mancha Morada */
+.blob-1 { 
+    top: -10%; left: -10%; width: 50vw; height: 50vw; 
+    background: #7B2CBF; 
+    animation: morph 15s ease-in-out infinite;
+}
+
+/* Mancha Azul Oscura */
+.blob-2 { 
+    bottom: -20%; right: -10%; width: 60vw; height: 60vw; 
+    background: #24243e; 
+    animation: drift 20s ease-in-out infinite alternate;
+}
+
+/* Mancha Acento (Cyan/Rosa) */
+.blob-3 { 
+    top: 40%; left: 30%; width: 40vw; height: 40vw; 
+    background: radial-gradient(circle, rgba(224, 170, 255, 0.5) 0%, rgba(0,0,0,0) 70%); 
+    animation: float 12s ease-in-out infinite; 
+    opacity: 0.4;
+}
+
+@keyframes morph {
+    0% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; transform: translate(0, 0) rotate(0deg); }
+    50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; transform: translate(50px, 20px) rotate(180deg); }
+    100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; transform: translate(0, 0) rotate(360deg); }
+}
+@keyframes drift {
+    0% { transform: translateX(0) scale(1); }
+    100% { transform: translateX(-50px) scale(1.1); }
+}
+@keyframes float {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-40px) scale(1.05); }
+}
+
+/* === 2. TIPOGRAFÍA Y TEXTOS === */
+.brand-title {
+    font-family: 'Kaushan Script', cursive;
+    font-size: 4rem;
+    color: #E0AAFF;
+    text-shadow: 0 0 20px rgba(224, 170, 255, 0.5);
+    margin-bottom: 10px;
+}
+
+.subtitle { font-weight: 800; font-size: 2rem; }
+.text-neon { color: #E0AAFF; text-shadow: 0 0 10px rgba(224, 170, 255, 0.3); }
+
+/* === 3. TARJETA DE VIDRIO (GLASSMORPHISM) === */
+.card-glass {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+}
+
+/* === 4. INPUTS Y FORMULARIO === */
+.input-group-text {
+    background: white !important;
+    color: #333 !important;
+    border: none !important;
+}
+
+input[type="email"], input[type="date"] {
+    background: white !important;
+    color: #333 !important;
+    border: none !important;
+    font-weight: 600;
+    padding: 12px;
+}
+
+input:focus {
+    box-shadow: 0 0 0 4px rgba(123, 44, 191, 0.3) !important;
+    border-color: #7B2CBF !important;
+}
+
+/* === 5. BOTONES === */
+.btn-glow {
+    background: linear-gradient(45deg, #7B2CBF, #9D4EDD);
+    border: none;
+    transition: all 0.3s;
+}
+.btn-glow:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 30px rgba(123, 44, 191, 0.6);
+    color: white;
+}
+
+.hover-white:hover { color: white !important; }
+
+/* === 6. MODALES === */
+.modal-glass-content {
+    background-color: #151525;
+    border: 1px solid rgba(123, 44, 191, 0.5);
+    box-shadow: 0 0 50px rgba(123, 44, 191, 0.2);
+    color: white;
+    border-radius: 20px;
+}
+.modal-header, .modal-footer { border-color: rgba(255,255,255,0.1); }
+.btn-close-white { filter: invert(1); }
+
+.confetti-icon {
+    font-size: 4rem;
+    animation: pop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+@keyframes pop { 0% { transform: scale(0); } 100% { transform: scale(1); } }
+
+/* === 7. RESPONSIVE (MÓVIL) === */
+@media (max-width: 991px) {
+    .brand-title { font-size: 3rem; }
+    .subtitle { font-size: 1.5rem; }
+    .benefit-list li { font-size: 1rem; }
+    
+    /* En móvil, las manchas deben ser más sutiles */
+    .blob-1, .blob-2, .blob-3 { opacity: 0.4; filter: blur(50px); }
+    
+    .card-glass { padding: 1.5rem !important; }
+}
